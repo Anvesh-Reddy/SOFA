@@ -5,14 +5,14 @@ today = DT.date.today()
 class recomEngine:
     def __init__(self):
         today = DT.date.today()
-        self.today = DT.date.today()
-        self.pastdata = pd.read_csv('data/lunch_order.csv')
+        self.today = DT.date.today()        
         self.fooddata = pd.read_csv('data/FoodItemLookup.csv')
     
-    def getRecom(self, user_id, date):
-
+    def getRecom(self, user_id, date, order_category):
+        self.pastdata = pd.read_csv('data/orders.csv')
         print(date)
         print(user_id)
+        print(order_category)
 
         if not date:
             curDate = today
@@ -25,19 +25,16 @@ class recomEngine:
         dates = [preWeek1.strftime("%Y-%m-%d"), preWeek2.strftime("%Y-%m-%d")]
 
         newdata = self.pastdata.copy()
-        
-        print(date)
-        print(user_id)
+                
         # Condition to filter out date range data
         isDate = (dates[0] == newdata['timestamp'].str[:10]) | (dates[1] == newdata['timestamp'].str[:10])
+        isCat = order_category == newdata['order_category']
 
-        recData = newdata[isDate][['user_id', 'item_id']]        
+        recData = newdata[isDate & isCat][['user_id', 'item_id']]        
         
         #Condition to get user details
-        isUser = recData['user_id'].astype(str) == user_id
-        print(user_id)
-
-        print(recData[isUser])
+        isUser = recData['user_id'].astype(str) == user_id        
+        
         items = recData[isUser]['item_id']
         print("items", items)
         nonUserData = recData[~isUser]
