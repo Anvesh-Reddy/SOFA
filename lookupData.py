@@ -12,3 +12,9 @@ class lookupData:
         ava_food = self.fooddata[self.fooddata['availability'].str.contains('|'.join([weeknum]))]['item_name']
         return ava_food.tolist()
 
+    def getPastOrders(self, user_id):
+        pastData = pd.read_csv('data/orders.csv')
+        pastData = pastData[pastData['user_id'].astype(str) == str(user_id)]
+        return pastData[:10].to_dict('list')
+
+

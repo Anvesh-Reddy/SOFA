@@ -38,14 +38,14 @@ class ratingEngine:
             user_rating = 2
         else:
             user_rating = ""
-        pastfeedback.loc[pastfeedback['order_id'] == orderid ,'rating'] = user_rating
-        pastfeedback.loc[pastfeedback['order_id'] == orderid ,'feedback'] = comment
+        pastfeedback.loc[pastfeedback['order_id'].astype(str) == str(orderid) ,'rating'] = user_rating
+        pastfeedback.loc[pastfeedback['order_id'].astype(str) == str(orderid) ,'feedback'] = comment
         if comment != "":
             pastfeedback.loc[pastfeedback['order_id'] == orderid ,'sentiment'] = self.sentiment_analysis(comment)
         else:
             pastfeedback.loc[pastfeedback['order_id'] == orderid ,'sentiment'] = ""
         pastfeedback.to_csv('data/orders.csv',index = False)
-        return "Feedback saved !!"
+        return "Feedback is saved"
 
         
 

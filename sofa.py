@@ -2,13 +2,13 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
 from recomEngine import recomEngine
-#from ratingEngine import ratingEngine
+from ratingEngine import ratingEngine
 from lookupData import lookupData
 
 app = Flask(__name__)
 app.debug = True
 re = recomEngine()
-#rt = ratingEngine()
+rt = ratingEngine()
 ld = lookupData()
 CORS(app)
 
@@ -21,6 +21,13 @@ def get_available_food():
     food_list = ld.getFoodData()
     #food_list = food_list.to_json()
     return jsonify({"availableItems": food_list})
+
+@app.route('/get_past_orders', methods=['POST'])
+def get_past_orders():
+    content = request.get_json()
+    user_id = content['user_id']
+    past_orders = ld.getPastOrders(user_id)
+    return json.dumps({'past_orders': past_orders})
 
 @app.route('/get_recom_food', methods=['POST'])
 def get_recom_food():    
@@ -37,19 +44,25 @@ def get_recom_food():
           
     return json.dumps({'food_list': food_list})
 
-@app.route('/get_rated_food', methods=['POST'])
-def get_rated_food():
+@app.route('/save_feedback', methods=['POST'])
+def save_feedback():
     content = request.get_json()
-    user_id = content['user_id']
-    date = content['date']
+    order_id = content['order_id']
+    emoji = content['emoji']
+    comment = content['comment']
     # Some logic to post method        
     try:
-        food_list = rt.getRating()
+        response = rt.saveFeedback(emoji, comment, order_id)
     except:
-        food_list = []
-        print("An exception occurred")    
-          
-    return json.dumps({'food_list': food_list})
+        response = ""
+        print("An exception occurred")          
+    return response
+
+@app.route('/get_posneg_feedbacks')
+def getPosNegFeedbacks():
+    content = request.get_json()
+    feedbacks = rt.getPosNegFeedbacks()          
+    return json.dumps({'feedbacks': feedbacks})
 
 '''
 Run Commands
