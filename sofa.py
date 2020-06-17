@@ -3,12 +3,14 @@ from flask_cors import CORS
 import json
 from recomEngine import recomEngine
 from ratingEngine import ratingEngine
+from forecastEngine import forecastEngine
 from lookupData import lookupData
 
 app = Flask(__name__)
 app.debug = True
 re = recomEngine()
 rt = ratingEngine()
+fe = forecastEngine()
 ld = lookupData()
 CORS(app)
 
@@ -67,6 +69,14 @@ def getPosNegFeedbacks():
     feedbacks = rt.getPosNegFeedbacks()          
     return json.dumps({'feedbacks': feedbacks})
 
+@app.route('/get_forecast_data')
+def getForecastData():    
+    response = fe.get_forecast()     
+    return json.dumps({"output": response})
+
+
+if __name__ == "__main__":
+    app.run()
 '''
 Run Commands
 
