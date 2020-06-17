@@ -9,8 +9,8 @@ class lookupData:
     def getFoodData(self, order_cat):
         available_food = self.fooddata.copy()
         weeknum = str(today.weekday())
-        ava_food = available_food[available_food['availability'].str.contains('|'.join([weeknum])) & available_food['order_category'].str.contains('|'.join([order_cat]))]['item_name']
-        return ava_food.tolist()
+        ava_food = available_food[available_food['availability'].str.contains('|'.join([weeknum])) & available_food['order_category'].str.contains('|'.join([order_cat]))]
+        return ava_food[['item_id', 'item_name', 'price']].to_dict(orient='records')
 
     def getPastOrders(self, user_id):
         pastData = pd.read_csv('data/orders.csv')
