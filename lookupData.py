@@ -9,12 +9,15 @@ class lookupData:
     def getFoodData(self, order_cat):
         available_food = self.fooddata.copy()
         weeknum = str(today.weekday())
-        ava_food = self.fooddata[self.fooddata['availability'].str.contains('|'.join([weeknum])) & self.fooddata['order_category'].str.contains('|'.join([order_cat]))]['item_name']
+        ava_food = available_food[available_food['availability'].str.contains('|'.join([weeknum])) & available_food['order_category'].str.contains('|'.join([order_cat]))]['item_name']
         return ava_food.tolist()
 
     def getPastOrders(self, user_id):
         pastData = pd.read_csv('data/orders.csv')
-        pastData = pastData[pastData['user_id'].astype(str) == str(user_id)]
-        return pastData[-10:].to_dict(orient='records')
+        pastData = pastData[pastData['user_id'].astype(str) == str(user_id)]        
+        mergedData = pd.merge(pastData[['order_id', 'order_date', 'order_category', 'item_id', 'feedback', 'sentiment', 'rating']], self.fooddata[['item_id', 'item_name', 'price']], on='item_id')        
+        mergedData.fillna("", inplace=True)
+        mergedData = mergedData.sort_values(['order_date'], ascending=False)   
+        return mergedData[:10].to_dict(orient='records')
 
 

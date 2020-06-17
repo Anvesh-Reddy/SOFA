@@ -29,6 +29,7 @@ def get_past_orders():
     content = request.get_json()
     user_id = content['user_id']
     past_orders = ld.getPastOrders(user_id)
+    print(past_orders)
     return json.dumps({'past_orders': past_orders})
 
 @app.route('/get_recom_food', methods=['POST'])
