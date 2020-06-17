@@ -63,9 +63,8 @@ def save_feedback():
         print("An exception occurred")          
     return response
 
-@app.route('/get_posneg_feedbacks')
-def getPosNegFeedbacks():
-    content = request.get_json()
+@app.route('/get_feedbacks')
+def getPosNegFeedbacks():    
     feedbacks = rt.getPosNegFeedbacks()          
     return json.dumps({'feedbacks': feedbacks})
 
