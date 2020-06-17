@@ -25,7 +25,7 @@ class ratingEngine:
     def getPosNegFeedbacks(self):
         feedback = pd.read_csv('data/orders.csv')
         feedback.sort_values(['timestamp'],ascending = False,inplace = True)
-        response  = feedback.dropna()[:10][['feedback','sentiment']].to_dict('list')
+        response  = feedback.dropna()[:10][['feedback','sentiment']].to_dict(orient='records')
         return response 
 
     def saveFeedback(self,emoji,comment,orderid):
