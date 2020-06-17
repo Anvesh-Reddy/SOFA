@@ -15,6 +15,6 @@ class lookupData:
     def getPastOrders(self, user_id):
         pastData = pd.read_csv('data/orders.csv')
         pastData = pastData[pastData['user_id'].astype(str) == str(user_id)]
-        return pastData[-10:].to_dict('list')
+        return pastData[-10:].to_dict(orient='records')
 
 
