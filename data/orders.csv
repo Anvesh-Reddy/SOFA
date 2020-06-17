@@ -811,9 +811,9 @@ order_id,user_id,timestamp,order_date,order_category,has_availed,item_id,rating,
 636,1049,2020-04-01 17:27:26,2020-04-02,Lunch,1,5,,,
 637,1039,2020-04-01 17:38:26,2020-04-02,Lunch,1,2,,,
 638,1040,2020-04-01 17:44:26,2020-04-02,Lunch,1,4,,,
-639,1014,2020-04-01 17:55:26,2020-04-02,Lunch,1,2,,,
+639,1014,2020-04-01 17:55:26,2020-04-02,Lunch,1,2,2.0,Good Food,positive
 640,1005,2020-04-01 18:07:26,2020-04-02,Lunch,1,2,,,
-641,1004,2020-04-01 18:08:26,2020-04-02,Lunch,1,12,3.0,Food is good,negative
+641,1004,2020-04-01 18:08:26,2020-04-02,Lunch,1,12,3.0,Food is great,positive
 642,1021,2020-04-01 18:35:26,2020-04-02,Lunch,1,5,2.0,Dal is inedible and unworthy.,neutral
 643,1019,2020-04-01 18:48:26,2020-04-02,Lunch,1,7,,,
 644,1027,2020-04-01 20:28:26,2020-04-02,Lunch,1,2,1.0,Worst curry ever seen didn't have any salt and huge amount of oil in that,neutral
@@ -3043,6 +3043,6 @@ order_id,user_id,timestamp,order_date,order_category,has_availed,item_id,rating,
 636,1046,2020-06-12 11:49:26,2020-06-12,Dinner,1,12,3.0,Great food . delicious,positive
 637,1028,2020-06-12 13:03:26,2020-06-12,Dinner,1,12,3.0,Chicken pieces in biryani are yummy and tasty,neutral
 638,1002,2020-06-12 13:14:26,2020-06-12,Dinner,1,3,,,
-639,1041,2020-06-12 14:53:26,2020-06-12,Dinner,1,3,,,
+639,1041,2020-06-12 14:53:26,2020-06-12,Dinner,1,3,2.0,Good Food,positive
 640,1038,2020-06-12 15:04:26,2020-06-12,Dinner,1,3,3.0,Foods smelled so tempting and taste is equally good,neutral
-641,1001,2020-06-12 15:07:26,2020-06-12,Dinner,1,3,3.0,Food is good,negative
+641,1001,2020-06-12 15:07:26,2020-06-12,Dinner,1,3,3.0,Food is great,positive

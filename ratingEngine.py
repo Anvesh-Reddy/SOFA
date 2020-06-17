@@ -41,9 +41,9 @@ class ratingEngine:
         pastfeedback.loc[pastfeedback['order_id'].astype(str) == str(orderid) ,'rating'] = user_rating
         pastfeedback.loc[pastfeedback['order_id'].astype(str) == str(orderid) ,'feedback'] = comment
         if comment != "":
-            pastfeedback.loc[pastfeedback['order_id'] == orderid ,'sentiment'] = self.sentiment_analysis(comment)
+            pastfeedback.loc[pastfeedback['order_id'].astype(str) == str(orderid) ,'sentiment'] = self.sentiment_analysis(comment)
         else:
-            pastfeedback.loc[pastfeedback['order_id'] == orderid ,'sentiment'] = ""
+            pastfeedback.loc[pastfeedback['order_id'].astype(str) == str(orderid) ,'sentiment'] = ""
         pastfeedback.to_csv('data/orders.csv',index = False)
         return "Feedback is saved"
 

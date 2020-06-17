@@ -17,9 +17,11 @@ def hello_world():
     return 'Hello, World!'
 
 @app.route('/get_ava_food')
-def get_available_food():
-    food_list = ld.getFoodData()
-    #food_list = food_list.to_json()
+def get_available_food():    
+    args = request.args
+    print(args)  
+    order_cat = args['order_cat']
+    food_list = ld.getFoodData(order_cat)    
     return jsonify({"availableItems": food_list})
 
 @app.route('/get_past_orders', methods=['POST'])
