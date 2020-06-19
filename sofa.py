@@ -51,6 +51,7 @@ def get_recom_food():
 @app.route('/save_feedback', methods=['POST'])
 def save_feedback():
     content = request.get_json()
+    print(content)
     order_id = content['order_id']
     emoji = content['emoji']
     comment = content['comment']

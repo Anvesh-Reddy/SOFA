@@ -30,14 +30,15 @@ class ratingEngine:
 
     def saveFeedback(self,emoji,comment,orderid):
         pastfeedback = pd.read_csv('data/orders.csv')
-        if emoji == "Happy":
-            user_rating = 3
-        elif emoji == "Sad":
-            user_rating = 1
-        elif emoji == "Neutral":
-            user_rating = 2
-        else:
+        print(emoji)
+        user_rating = None
+        
+        user_rating = emoji
+        if user_rating is None or user_rating == 0:
             user_rating = ""
+
+        print(user_rating)
+
         pastfeedback.loc[pastfeedback['order_id'].astype(str) == str(orderid) ,'rating'] = user_rating
         pastfeedback.loc[pastfeedback['order_id'].astype(str) == str(orderid) ,'feedback'] = comment
         if comment != "":
