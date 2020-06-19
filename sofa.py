@@ -30,8 +30,7 @@ def get_available_food():
 def get_past_orders():
     content = request.get_json()
     user_id = content['user_id']
-    past_orders = ld.getPastOrders(user_id)
-    print(past_orders)
+    past_orders = ld.getPastOrders(user_id)    
     return json.dumps({'past_orders': past_orders})
 
 @app.route('/get_recom_food', methods=['POST'])
@@ -61,7 +60,7 @@ def save_feedback():
     except:
         response = ""
         print("An exception occurred")          
-    return response
+    return json.dumps({"response": response})
 
 @app.route('/get_feedbacks')
 def getPosNegFeedbacks():    
