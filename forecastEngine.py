@@ -12,7 +12,10 @@ class forecastEngine:
         filename = 'models/Item_' + str(item) + '_model.sav'
         model = pickle.load(open(filename, 'rb'))
         forecasted_count = np.round(model.forecast(day_count))
-        weekday = datetime.today().weekday()        
+        weekday = datetime.today().weekday()
+        if weekday > 4:
+            weekday = 4    
+        
         forecast = np.roll(forecasted_count,5-weekday-1)            
         #forecast = forecast.astype(str)        
         return [int(count) for count in forecast]
