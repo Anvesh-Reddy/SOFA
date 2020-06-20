@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as DT
-today = DT.date.today()
+today = DT.date.today() - DT.timedelta(days=1)
 
 class lookupData:
     def __init__(self):

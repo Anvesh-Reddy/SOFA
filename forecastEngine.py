@@ -19,7 +19,7 @@ class forecastEngine:
 
     def get_forecast(self):
         dates = []
-        Curr_date = datetime.today()
+        Curr_date = datetime.today() - timedelta(days=1)
         wd = Curr_date.weekday()            
         for x in range(7):            
             rem = (wd + x + 1) % 7            
